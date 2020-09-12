@@ -42,6 +42,7 @@ begin
 
   main : process
   begin
+    
     test_runner_setup(runner, runner_cfg);
 
     -- Teste: 1
