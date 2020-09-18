@@ -20,6 +20,8 @@ architecture rtl of FullAdder is
   -- utilizados nesse modulo.
 
 begin
-  -- Implementação vem aqui!
 
+	soma <= a xor b xor c;
+	vaium <= ((a and b) or (b and c) or (a and c));
+	
 end architecture;
