@@ -15,18 +15,19 @@
     "user-github": "annabgl"
   },
   "aluno-4": {
-    "nome": "",
-    "email-insper": "",
-    "user-github": ""
+    "nome": "Beatriz Cabral Fernandes",
+    "email-insper": "beatrizcf2@al.insper.edu.br",
+    "user-github": "beatrizcf2"
   },
   "aluno-5": {
     "nome": "Luis Felipe Souza",
     "email-insper": "luisfcs3@al.insper.edu.br",
-    "user-github": "lfcunha07""
+    "user-github": "lfcunha07"
   },
   "aluno-6": {
-    "nome": "",
-    "email-insper": "",
-    "user-github": ""
+    "nome": "Rodrigo Mattar",
+    "email-insper": "rodrigosm11@al.insper.edu.br",
+    "user-github": "rodrigosm11"
   }
+  
 }
