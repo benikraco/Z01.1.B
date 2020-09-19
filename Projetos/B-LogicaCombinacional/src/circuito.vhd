@@ -11,4 +11,6 @@ architecture arch of circuito is
 
 begin
 
+x <= ((A and B) and C);
+
 end architecture;
