@@ -17,11 +17,16 @@ architecture rtl of comparador16 is
   -- Aqui declaramos sinais (fios auxiliares)
   -- e componentes (outros módulos) que serao
   -- utilizados nesse modulo.
+ 
 
 begin
-  -- Implementação vem aqui!
-   zr <= '1' WHEN a = "0000000000000000" ELSE '0';
-	ng <= '1' when a < "0000000000000000" ELSE '0';
+	with a select
+	zr <= '1' when "0000000000000000",
+			'0' when others;
+			
+	ng <= '1' when (a(15) = '1') else
+			'0' ;
+  
 		  
 	
   
