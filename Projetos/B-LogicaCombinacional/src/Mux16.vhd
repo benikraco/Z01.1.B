@@ -10,7 +10,9 @@ entity Mux16 is
 end entity;
 
 architecture arch of Mux16 is
-begin
 
+begin	
 
+	q <= (a and not sel) or (b and sel);
+	
 end architecture;
