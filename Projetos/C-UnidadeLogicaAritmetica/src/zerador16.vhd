@@ -19,6 +19,13 @@ architecture rtl of zerador16 is
   -- utilizados nesse modulo.
 
 begin
-  -- Implementação vem aqui!
+	process(z)
+	begin 
+	if z ='1' then
+	y<= "0000000000000000";
+	else y <= a;
+	end if;
+	end process;
+ 
 
 end architecture;
