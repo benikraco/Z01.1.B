@@ -30,5 +30,6 @@ architecture rtl of Add16 is
 
 begin
   -- Implementação vem aqui!
+  q <= a and b;
 
 end architecture;
