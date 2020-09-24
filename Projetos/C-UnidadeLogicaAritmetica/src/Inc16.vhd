@@ -7,6 +7,7 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.all;
+use ieee.numeric_std.all;
 
 entity Inc16 is
 	port(
@@ -30,5 +31,7 @@ architecture rtl of Inc16 is
 
 begin
   -- Implementação vem aqui!
+  q<= std_logic_vector(unsigned(a) + 1);
+  
 
 end architecture;
