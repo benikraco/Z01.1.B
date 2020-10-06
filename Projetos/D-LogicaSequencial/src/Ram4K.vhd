@@ -59,6 +59,16 @@ architecture arch of Ram4K is
 	signal output0, output1, output2, output3, output4, output5, output6, output7 : STD_LOGIC_VECTOR(15 downto 0);
 
 begin
+	R0: Ram512 port map(clock,input, load0,address(8 downto 0), output0);
+	R1: Ram512 port map(clock,input, load1,address(8 downto 0), output1);
+	R2: Ram512 port map(clock,input, load2,address(8 downto 0), output2);
+	R3: Ram512 port map(clock,input, load3,address(8 downto 0) ,output3);
+	R4: Ram512 port map(clock,input, load4,address(8 downto 0), output4);
+	R5: Ram512 port map(clock,input, load5,address(8 downto 0),output5);
+	R6: Ram512 port map(clock,input, load6,address(8 downto 0), output6);
+	R7: Ram512 port map(clock,input, load7,address(8 downto 0), output7);
+	M: Mux8Way16 port map(output0,output1,output2,output3,output4,output5,output6,output7,address(11 downto 9),output);
+	DM: DMux8Way port map (load, address(11 downto 9), load0, load1, load2, load3, load4, load5, load6, load7);
 
 
 end architecture;
