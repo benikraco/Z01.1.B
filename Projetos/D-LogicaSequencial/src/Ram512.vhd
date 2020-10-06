@@ -60,5 +60,16 @@ architecture arch of Ram512 is
 
 begin
 
+	R0: Ram64 port map(clock,input, load0,address(5 downto 0), output0);
+	R1: Ram64 port map(clock,input, load1,address(5 downto 0), output1);
+	R2: Ram64 port map(clock,input, load2,address(5 downto 0), output2);
+	R3: Ram64 port map(clock,input, load3,address(5 downto 0) ,output3);
+	R4: Ram64 port map(clock,input, load4,address(5 downto 0), output4);
+	R5: Ram64 port map(clock,input, load5,address(5 downto 0),output5);
+	R6: Ram64 port map(clock,input, load6,address(5 downto 0), output6);
+	R7: Ram64 port map(clock,input, load7,address(5 downto 0), output7);
+	M: Mux8Way16 port map(output0,output1,output2,output3,output4,output5,output6,output7,address(8 downto 6),output);
+	DM: DMux8Way port map (load, address(8 downto 6), load0, load1, load2, load3, load4, load5, load6, load7);
+
 
 end architecture;
