@@ -10,7 +10,7 @@ movw (%A), %D
 leaw $0, %A
 movw %D, (%A)
 leaw $END, %A
-jge
+jge %D
 nop
 negw %D 
 leaw $0, %A
