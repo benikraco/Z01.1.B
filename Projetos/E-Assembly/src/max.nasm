@@ -9,4 +9,17 @@
 ; ou seja, o maior valor que estiver, ou em R0 ou R1 sera copiado para R2
 ; Estamos considerando número inteiros
 
- 
+leaw $0, %A
+movw (%A), %D ; %D = RAM[0]
+leaw $2, %A 
+movw %D, (%A) ; RAM[2] = RAM[0]
+leaw $1, %A
+subw (%A), %D, %D ; RAM[1] - RAM[0]
+leaw $END, %A 
+jle %D 
+nop
+leaw $1, %A
+movw (%A), %D
+leaw $2, %A
+movw %D, (%A)
+END:
