@@ -40,7 +40,7 @@ IMPAR:
 
 PAR:
     leaw $0, %A
-    movw $1, (%A)
+    movw $1, (%A);conferir se aqui n era leaw
     leaw $FIM, %A
     jmp
     nop

@@ -20,4 +20,45 @@
 ;  RAM[14] = a
 ; 
 
- 
+leaw $10, %A
+movw (%A), %D
+
+leaw $14, %A
+subw %D, (%A), %D
+leaw $CONFERIR, %A
+je %D
+nop
+
+leaw $NORMAL, %A
+jmp
+nop
+
+CONFERIR:
+    leaw $11, %A 
+    movw (%A), %D
+
+    leaw $13, %A
+    subw %D, (%A), %D
+    leaw $PALINDROMO, %A
+    je %D
+    nop
+
+    leaw $NORMAL, %A
+    jmp
+    nop
+
+PALINDROMO:
+    leaw $0, %A
+    movw $1, (%A)
+    leaw $FIM, %A
+    jmp
+    nop
+
+NORMAL:
+    leaw $0, %A
+    movw $0, (%A)
+    leaw $FIM, %A
+    jmp
+    nop
+
+FIM:
