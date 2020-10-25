@@ -8,6 +8,8 @@
 ;  - Bata uma foto!
 
 ;utilizando o codigo desenvolvido no lcd quadrado
+;alterar o tempo do simulador para 10 segundos
+;10.000 ms
 
 ;14 - tipo A da letra B
 leaw $14, %A
@@ -62,43 +64,21 @@ movw %A, %D
 leaw $20, %A
 movw %D, (%A)
 
-;inicializando 
+;inicializando 1o pixel
 leaw $16384, %A
 movw %A, %D
 leaw $21, %A 
 movw %D, (%A)
 
-;mascara 1
-leaw $8, %A
-movw %A, %D
-leaw $22, %A
-movw %D, (%A)
 
-;mascara 2
-leaw $4, %A
-movw %A, %D
-leaw $23, %A
-movw %D, (%A)
-
-;mascara 3
-leaw $2, %A
-movw %A, %D
-leaw $24, %A
-movw %D, (%A)
-
-;mascara 4
-leaw $1, %A
-movw %A, %D
-leaw $25, %A
-movw %D, (%A)
-
-;contador de mascaras/colunas
+;contador de colunas
 leaw $0, %A
 movw %A, %D
 leaw $26, %A
 movw %D, (%A)
 
 WLINHA:
+    ;and da receita com a mascara
     leaw $20, %A 
     movw (%A), %D 
     leaw $10, %A
@@ -120,15 +100,11 @@ RETORNO1:
     incw %D
     movw %D, (%A)
 
-;contador
+;contador prox coluna
     leaw $26, %A 
     movw (%A), %D
     incw %D
     movw %D, (%A)
-
-
-
-
 
     leaw $20, %A 
     movw (%A), %D 
@@ -157,9 +133,6 @@ RETORNO2:
     incw %D
     movw %D, (%A)
 
-
-
-
     leaw $20, %A 
     movw (%A), %D 
     leaw $10, %A
@@ -187,9 +160,6 @@ RETORNO3:
     incw %D
     movw %D, (%A)
 
-
-
-
     leaw $20, %A 
     movw (%A), %D 
     leaw $10, %A
@@ -210,20 +180,49 @@ RETORNO4:
     movw (%A), %D
     incw %D
     movw %D, (%A)
-
+    
+;prepara para o loop de linha
 ;contador
     leaw $26, %A 
     movw (%A), %D
     incw %D
     movw %D, (%A)
 
-leaw $FIM, %A 
-jmp
-nop
+;mudando de linha
+    ;prepara p prox linha
+    leaw $21, %A
+    movw (%A), %D
+    leaw $316, %A 
+    addw %A, %D, %D
+    leaw $21, %A 
+    movw %D, (%A)
+
+
+    ;zerando o contador de mascaras/colunas
+    leaw $0, %A
+    movw %A, %D
+    leaw $26, %A
+    movw %D, (%A)
+
+    ;incrementando o contador de linhas
+    leaw $20, %A
+    movw (%A), %D
+    incw %D
+    movw %D, (%A)
+
+    leaw $9, %A
+    subw %D, %A, %D 
+
+    leaw $WLINHA, %A 
+    jne %D
+    nop
+
+    leaw $END, %A 
+    jmp
+    nop
 
 
 DESENHA:
-
 
 
 leaw $16, %A
@@ -262,8 +261,10 @@ WHILE:
     movw %D, (%A)
 
     leaw $WHILE, %A
-    jg %D
+    jne %D
     nop
+
+RETORNA:
 
     leaw $26, %A 
     movw (%A), %D
@@ -287,4 +288,8 @@ WHILE:
     nop
     decw %D 
 
-FIM:
+ 
+END:
+
+
+
