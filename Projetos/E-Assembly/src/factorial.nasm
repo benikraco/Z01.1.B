@@ -30,6 +30,10 @@
     leaw $1, %A 
     movw %D, (%A)
 
+    leaw $ISZERO, %A
+    je %D 
+    nop
+
  LOOP:
     
     leaw $0, %A 
@@ -77,6 +81,13 @@ WHILE:
     leaw $WHILE, %A 
     jmp
     nop
+
+ISZERO:
+
+    leaw $1, %A
+    movw (%A), %D
+    addw $1, %D, %D
+    movw %D, (%A)
 
  ENDWHILE:
 
