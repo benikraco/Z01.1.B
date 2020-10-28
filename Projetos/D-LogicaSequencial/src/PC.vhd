@@ -52,9 +52,14 @@ architecture arch of PC is
 			q:   out STD_LOGIC_VECTOR(15 downto 0));
 	end component;
 	
-	signal outInc, mux0, mux1, mux2, outReg: STD_LOGIC_VECTOR(15 downto 0);
+	signal outInc, muxInc, muxLoad, muxRst, outReg: STD_LOGIC_VECTOR(15 downto 0);
 
 begin
-
-
+    
+    u1 : register16 port map (clock, muxRst, '1', outReg);
+    m0 : mux16 port map(muxLoad, x"0000", reset, muxRst);
+    m1: mux16 port map(muxInc, input, load, muxLoad);
+    m2: mux16 port map(outReg, outInc, increment, muxInc);
+    i0: inc16 port map(outReg, outInc);
+    OUTPUT <= outreg;
 end architecture;
