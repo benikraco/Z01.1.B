@@ -26,9 +26,16 @@ entity ControlUnit is
     );
 end entity;
 
-architecture arch of ControlUnit is
+architecture arch of ControlUnit is  
 
 begin
+
+  loadD <= instruction(17) and instruction(4);
+  
+  loadA <= not instruction(17) or instruction (3);
+  
+  loadM <=  instruction(17) and instruction(5);
+
 
 
 end architecture;
