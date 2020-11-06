@@ -30,45 +30,5 @@ architecture arch of ControlUnit is
 
 begin
 
-	loadD <= istruction(17) and instruction(4);
 
 end architecture;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
