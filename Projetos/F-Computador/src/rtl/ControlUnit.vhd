@@ -45,13 +45,19 @@ begin
 
 	loadD <= instruction(17) and instruction(4);
 	loadM <= instruction(17) and instruction(5);
-	loadA <= (instruction(17) and instruction(3)) or (not instruction(17));
-	muxALUI_A <= not instruction(17);
+	loadA <= not instruction(17);
+  
+  muxALUI_A <= not instruction(17);
 
 	zx <= instruction(17) and instruction(12);
 	nx <= instruction(17) and instruction(11);
 	zy <= instruction(17) and instruction(10);
-	ny <= instruction(17) and instruction(9);
+  ny <= instruction(17) and instruction(9);
+  f <= instruction (17) and instruction(8);
+  no <= instruction (17) and instruction(7);
+
+  muxAM <= instruction (17) and instruction(13);
+
 
   pc <= '1' when jmp = "001" and comparador = "00" else
         '1' when jmp = "101" and comparador = "01" else

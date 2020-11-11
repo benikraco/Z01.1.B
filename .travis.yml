@@ -51,3 +51,7 @@ script:
   ## run scripts
   - python3 Projetos/A-AmbienteDesenvolvimento/testeAmbienteDesenvolvimento.py
   - python3 Projetos/B-LogicaCombinacional/testeLogicaCombinacional.py
+  - python3 Projetos/C-UnidadeLogicaAritmetica
+  - python3 Projetos/D-LogicasSequencial
+  - python3 Projetos/E-Assembly
+  - python3 Projetos/F-Computador
