@@ -139,6 +139,11 @@ BEGIN
     --LOAD_RAM     <= ??????; 
     --LOAD_LED     <= ??????; 
 
+    LOAD_DISPLAY <= load when ADDRESS > "011111111111111" and ADDRESS < "101001011000000" else '0';
+    LOAD_RAM <= load when ADDRESS <= "011111111111111" else '0';
+    LOAD_LED <= '1' when ADDRESS = "101001011000000" else '0';
+      
+
     ----------------------------------------
     -- SW e LED                           --
     ----------------------------------------
@@ -154,6 +159,8 @@ BEGIN
     ----------------------------------------
     -- precisar ser: RAM ou SW16
     -- OUTPUT <= ?????? ;
+
+    OUTPUT <= SW16 when ADDRESS = "101001011000001" else OUTPUT_RAM;
 
 
 END logic;
