@@ -8,7 +8,49 @@ package assembler;
 public class Code {
 
     public static String dest(String[] mnemnonic) {
-        /* TODO: implementar */
+        public static String dest(String[] mnemnonic) {
+            String reg = "";
+            if (mnemnonic.length == 2) {
+                switch (mnemnonic[1]) {
+                    case "%A":
+                        return "0001";
+                    case "%D":
+                        return "0010";
+                    case "(%A)":
+                        return "0100";
+                    default:
+                        return "0000";
+                }
+            } else if (mnemnonic.length == 3) {
+                reg = mnemnonic[1] + mnemnonic[2];
+                switch (reg) {
+                    case "%D%A":
+                    case "%A%D":
+                        return "0011";
+                    case "(%A)%A":
+                    case "%A(%A)":
+                        return "0101";
+                    case "(%A)%D":
+                    case "%D(%A)":
+                        return "0110";
+                    default:
+                        return "0000";
+                }
+            } else if (mnemnonic.length >= 3) {
+                reg = mnemnonic[1] + mnemnonic[2] + mnemnonic[3];
+                switch (reg) {
+                    case "(%A)%A%D":
+                    case "(%A)%D%A":
+                    case "%A(%A)%D":
+                    case "%D(%A)%A":
+                    case "%A%D(%A)":
+                    case "%D%A(%A)":
+                        return "0111";
+                    default:
+                        return "0000";
+                }
+            }
+        }
     	return "";
     }
 
