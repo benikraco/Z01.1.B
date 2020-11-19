@@ -36,8 +36,11 @@ public class Code {
      * @return Opcode (String de 3 bits) com código em linguagem de máquina para a instrução.
      */
     public static String jump(String[] mnemnonic) {
-        /* TODO: implementar */
-    	return "";
+        switch (mnemnonic[0]){
+            case "jmp" : return "111";
+
+            default : return "000";
+        }
     }
 
     /**

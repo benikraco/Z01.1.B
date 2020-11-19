@@ -20,6 +20,7 @@ public class Assemble {
     private PrintWriter outHACK = null;    // grava saida do código de máquina em Hack
     boolean debug;                         // flag que especifica se mensagens de debug são impressas
     private SymbolTable table;             // tabela de símbolos (variáveis e marcadores)
+    boolean flag;
 
     /*
      * inicializa assembler
@@ -45,6 +46,7 @@ public class Assemble {
      * Dependencia : Parser, SymbolTable
      * @return
      */
+
     public SymbolTable fillSymbolTable() throws FileNotFoundException, IOException {
 
         // primeira passada pelo código deve buscar os labels
@@ -55,11 +57,13 @@ public class Assemble {
         while (parser.advance()){
             if (parser.commandType(parser.command()) == Parser.CommandType.L_COMMAND) {
                 String label = parser.label(parser.command());
-                /* TODO: implementar */
-                // deve verificar se tal label já existe na tabela,
-                // se não, deve inserir. Caso contrário, ignorar.
+                if (table.contains(label) == false){
+                    table.addEntry(label, romAddress);
+                }
             }
-            romAddress++;
+            else {
+                romAddress++;
+            }
         }
         parser.close();
 
@@ -74,16 +78,23 @@ public class Assemble {
             if (parser.commandType(parser.command()) == Parser.CommandType.A_COMMAND) {
                 String symbol = parser.symbol(parser.command());
                 if (Character.isDigit(symbol.charAt(0))){
-                    /* TODO: implementar */
-                    // deve verificar se tal símbolo já existe na tabela,
-                    // se não, deve inserir associando um endereço de
-                    // memória RAM a ele.
+                   if (table.contains(symbol) == false){
+                       table.addEntry(symbol, ramAddress);
+                   }
                 }
             }
         }
         parser.close();
         return table;
     }
+
+public boolean NumOrDigit(String s){
+    for (int i = 0; i<s.length(); i++){
+        flag = Character.isDigit(s.charAt(i));
+    }
+    return flag;
+}
+
 
     /**
      * Segundo passo para a geração do código de máquina
@@ -104,10 +115,18 @@ public class Assemble {
          */
         while (parser.advance()){
             switch (parser.commandType(parser.command())){
-                /* TODO: implementar */
                 case C_COMMAND:
+                    String[] vector = parser.instruction(parser.command());
+                    instruction = "10" + Code.comp(vector) + Code.dest(vector) + Code.jump(vector);
                 break;
             case A_COMMAND:
+                if (NumOrDigit(parser.symbol(parser.command()))) {
+                    // leaw $0, %A -> 00000
+                    instruction = "00" + Code.toBinary(parser.symbol(parser.command()));
+                }
+                else {
+                    instruction = "00" + Code.toBinary(table.getAddress(parser.symbol(parser.command())).toString());
+                }
                 break;
             default:
                 continue;
