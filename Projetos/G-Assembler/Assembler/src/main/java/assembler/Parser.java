@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Encapsula o código de leitura. Carrega as instruções na linguagem assembly,
@@ -88,8 +90,14 @@ public class Parser {
      * @return o tipo da instrução.
      */
     public CommandType commandType(String command) {
-        /* TODO: implementar */
-    	return null;
+        if (command.contains("leaw")){
+            return CommandType.A_COMMAND;
+        } else if (command.contains(":")){
+            return CommandType.L_COMMAND;
+        } else{
+            return CommandType.C_COMMAND;
+
+        }
     }
 
     /**
@@ -99,7 +107,11 @@ public class Parser {
      * @return somente o símbolo ou o valor número da instrução.
      */
     public String symbol(String command) {
-        /* TODO: implementar */
+        if(commandType(command).equals(CommandType.A_COMMAND)){
+            int symbol= command.indexOf('$');
+            int comma = command.indexOf(',');
+            return command.substring(symbol+1,comma);
+        }
     	return null;
     }
 
@@ -110,7 +122,10 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public String label(String command) {
-        /* TODO: implementar */
+        if (commandType(command).equals(CommandType.L_COMMAND)){
+            int end = command.indexOf(':');
+            return command.substring(0,end);
+        }
     	return null;
     }
 
@@ -121,8 +136,10 @@ public class Parser {
      * @return um vetor de string contento os tokens da instrução (as partes do comando).
      */
     public String[] instruction(String command) {
-        /* TODO: implementar */
-    	return null;
+        command = command.replace(","," ");
+        String [] separated=command.split("\\s+");
+
+        return separated;
     }
 
 
