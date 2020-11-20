@@ -97,12 +97,13 @@ public boolean NumOrDigit(String s){
 
 
     /**
-     * Segundo passo para a geração do código de máquina
+     * Segundo passo para a geração do código de máquina -- testando commit
      * Varre o código em busca de instruções do tipo A, C
      * gerando a linguagem de máquina a partir do parse das instruções.
      *
      * Dependencias : Parser, Code
      */
+
     public void generateMachineCode() throws FileNotFoundException, IOException{
         Parser parser = new Parser(inputFile);  // abre o arquivo e aponta para o começo
         String instruction  = "";
