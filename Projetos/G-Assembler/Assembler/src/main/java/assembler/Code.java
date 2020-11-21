@@ -135,11 +135,6 @@ public class Code {
 
     public static String jump(String[] mnemnonic) {
         switch (mnemnonic[0]){
-<<<<<<< HEAD
-            case "jmp" : return "111";
-
-            default : return "000";
-=======
             case "jg"  : return "001";
             case "je"  : return "010";
             case "jge"  : return "011";
@@ -148,7 +143,6 @@ public class Code {
             case "jle"  : return "110";
             case "jmp"  : return "111";
             default    : return "000";
->>>>>>> 0e5498fdabcbfd398df51df7656bc04492637ceb
         }
     }
 
